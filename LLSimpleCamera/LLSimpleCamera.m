@@ -304,6 +304,9 @@ NSString *const LLSimpleCameraErrorDomain = @"LLSimpleCameraErrorDomain";
              onCapture(self, image, metadata, error);
          }
      }];
+ 
+ // freeze the screen AFTER the capture call to eliminate the occasional dark image
+  [self.captureVideoPreviewLayer.connection setEnabled:NO];
 }
 
 -(void)capture:(void (^)(LLSimpleCamera *camera, UIImage *image, NSDictionary *metadata, NSError *error))onCapture {
